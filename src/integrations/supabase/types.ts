@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      job_postings: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: number
+          matched_candidates: number
+          requirements: string | null
+          skills: string[] | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          matched_candidates?: number
+          requirements?: string | null
+          skills?: string[] | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: number
+          matched_candidates?: number
+          requirements?: string | null
+          skills?: string[] | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       todos: {
         Row: {
           completed: boolean
