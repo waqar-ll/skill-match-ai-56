@@ -1,1 +1,7 @@
 project_id = "wpapfqcqirtjwhogbtbe"
+
+[functions.process-resume]
+verify_jwt = true
+
+[functions.generate-job-matches]
+verify_jwt = true

@@ -14,6 +14,105 @@ export type Database = {
   }
   public: {
     Tables: {
+      candidates: {
+        Row: {
+          created_at: string
+          education: string | null
+          email: string | null
+          experience_years: number | null
+          id: string
+          name: string
+          phone: string | null
+          resume_text: string | null
+          skills: string[] | null
+          summary: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          education?: string | null
+          email?: string | null
+          experience_years?: number | null
+          id?: string
+          name: string
+          phone?: string | null
+          resume_text?: string | null
+          skills?: string[] | null
+          summary?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          education?: string | null
+          email?: string | null
+          experience_years?: number | null
+          id?: string
+          name?: string
+          phone?: string | null
+          resume_text?: string | null
+          skills?: string[] | null
+          summary?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      job_matches: {
+        Row: {
+          candidate_id: string | null
+          created_at: string
+          explanation: string | null
+          id: string
+          job_posting_id: number | null
+          match_score: number
+          matching_skills: string[] | null
+          missing_skills: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          candidate_id?: string | null
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          job_posting_id?: number | null
+          match_score: number
+          matching_skills?: string[] | null
+          missing_skills?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          candidate_id?: string | null
+          created_at?: string
+          explanation?: string | null
+          id?: string
+          job_posting_id?: number | null
+          match_score?: number
+          matching_skills?: string[] | null
+          missing_skills?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "job_matches_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "candidates"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "job_matches_job_posting_id_fkey"
+            columns: ["job_posting_id"]
+            isOneToOne: false
+            referencedRelation: "job_postings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       job_postings: {
         Row: {
           created_at: string
@@ -52,6 +151,50 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      resume_files: {
+        Row: {
+          candidate_id: string | null
+          created_at: string
+          file_size: number | null
+          file_type: string | null
+          filename: string
+          id: string
+          processing_error: string | null
+          status: string
+          user_id: string
+        }
+        Insert: {
+          candidate_id?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          filename: string
+          id?: string
+          processing_error?: string | null
+          status?: string
+          user_id: string
+        }
+        Update: {
+          candidate_id?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          filename?: string
+          id?: string
+          processing_error?: string | null
+          status?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resume_files_candidate_id_fkey"
+            columns: ["candidate_id"]
+            isOneToOne: false
+            referencedRelation: "candidates"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       todos: {
         Row: {
